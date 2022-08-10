@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tutorial_bloc/blocs/internet_bloc/internet_bloc.dart';
-import 'package:tutorial_bloc/blocs/internet_bloc/internet_state.dart';
+import 'package:tutorial_bloc/cubits/internet_cubit.dart';
+
+import 'cubits/internet_cubit.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -10,7 +11,42 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-
+        /// --------------------- Cubit ---------------------------------------
+        child: BlocConsumer<InternetCubit, InternetCubitState>(
+          listener: (context, state) {
+            // Implement listener which checks in background
+            if ( state ==  InternetCubitState.Gained){
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  content: Text("Internet Connected !"),
+                  backgroundColor: Colors.green,
+                ),
+              );
+            }
+            else if( state ==  InternetCubitState.Lost){
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  content: Text("Internet Disconnected !"),
+                  backgroundColor: Colors.red,
+                ),
+              );
+            }
+          },
+          builder: (context, state) {
+            // show the UI part here
+            if (state == InternetCubitState.Gained){
+              return Text("Connected");
+            }
+            else if ( state == InternetCubitState.Lost){
+              return Text("Disconnected");
+            }
+            else {
+              return Text("Loading");
+            }
+          },
+        ),
+        /*
+        ------------------------------------Bloc -------------------------------
         /// What If I wanna show a SnackBar or Dialog ??
         /// So we use BlocListener
         /// BlocListeners are useful for Background tasks but don't show the UI
@@ -48,6 +84,8 @@ class HomeScreen extends StatelessWidget {
             }
           },
         ),
+         ------------------------------------- Bloc -----------------------
+         */
         /*
           child: Center(
             /// Now wrap the Text widget with the BlocBuilder

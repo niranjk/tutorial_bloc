@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tutorial_bloc/blocs/internet_bloc/internet_bloc.dart';
+import 'package:tutorial_bloc/cubits/internet_cubit.dart';
 import 'package:tutorial_bloc/home_screen.dart';
 
 void main() {
@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
     /// BlocProvider provides the given Bloc to the child Widget
     /// so in whole MaterialApp the Bloc is available now
     return BlocProvider(
-      create: (context) => InternetBloc(),
+      create: (context) => InternetCubit(),
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
