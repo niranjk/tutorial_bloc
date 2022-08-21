@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tutorial_bloc/cubits/internet_cubit.dart';
-import 'package:tutorial_bloc/home_screen.dart';
+import 'package:tutorial_bloc/routes.dart';
 import 'package:tutorial_bloc/welcome/welcome_screen.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
 }
 
@@ -25,7 +26,8 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: const WelcomeScreen(),
+        onGenerateRoute: Routes.onGenerateRoute,
+        initialRoute: "/welcome",
       ),
     );
   }
