@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tutorial_bloc/cubits/internet_cubit.dart';
-
 import 'cubits/internet_cubit.dart';
 
 class HomeScreen extends StatelessWidget {
