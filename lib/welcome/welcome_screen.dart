@@ -28,12 +28,12 @@ class WelcomeScreen extends StatelessWidget {
                       /// Now we have to use the SignInBloc so we have to provide the Bloc to the SignInScreen
                       /// So we wrap with BlocProvider and provide the SignInBloc before navigating to SignInScreen
                       /// now the SignInBloc will be available in SignInScreen
-                      Navigator.push(
-                          context, MaterialPageRoute(builder: (context) =>
-                          BlocProvider(
-                            create: (context) => SignInBloc(),
-                            child: SignInScreen(),
-                          )));
+
+                      /// Using GeneratedRoutes ---
+                      /// also we can pass the arguments in the routes
+                      Navigator.pushNamed(context, "/signIn", arguments: {
+                        "title": "Sign In Dynamic Title"
+                      });
                     },
                     color: Colors.blue,
                     child: const Text("Sign In With Email"),

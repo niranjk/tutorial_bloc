@@ -9,12 +9,16 @@ class SignInScreen extends StatelessWidget {
 
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  final String title;
+
+  SignInScreen({ Key? key, required this.title}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Sign In With Email"),
+        /// make the title of the Second Screen Dynamic ...
+        title: Text(title),
       ),
       body: SafeArea(
         child: Padding(
